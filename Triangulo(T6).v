@@ -33,7 +33,7 @@ module pontoTriangulo (
 endmodule
 
 module area (
-	input [9:0] x1,
+  input [9:0] x1,
   input [9:0] y1,
   input [9:0] x2,
   input [9:0] y2,
