@@ -1,62 +1,58 @@
-module multv(
+module multiVetor(
 
-input clock, 
-input [9:0] k, 
-input [9:0] l, 
-output [21:0] o);
+  input clock, 
+  input [9:0] k, 
+  input [9:0] l, 
+  output [21:0] o);
 
-wire [19:0] a; 
-wire [21:0] b; 
-wire [21:0] s;
+  wire [19:0] a; 
+  wire [21:0] b; 
+  wire [21:0] s;
 
-reg [21:0] acc = 0;
+  reg [21:0] acc = 0;
 
-assign a = k * l; 
-assign s = a + b;
+  assign a = k * l; 
+  assign s = a + b;
+  assign b = acc; 
+  assign o = acc;
 
-assign b = acc; 
-assign o = acc;
+  always @( posedge clock )  
+    begin acc <= s; 
+  end
+  
+  endmodule
 
-always @( posedge clock ) begin acc <= s; 
 
-end
+  module test;
 
-endmodule
+  reg [9:0] k; 
+  reg [9:0] l;
 
-module test;
+  wire [21:0] o;
 
-reg [9:0] k; reg [9:0] l;
+  multv (clock, k, l, o);
 
-wire [21:0] o;
+  always #2
+    clock <= ~clock;
+    end
 
-multv (clock, k, l, o);
+  initial begin 
+    $dumpvars; 
 
-always #2 clock <= ~clock;
+    k<= 3; 
+    l<=6; 
 
-initial begin 
+    #4; 
+    k<=4; 
+    l<=7; 
 
-$dumpvars; 
+    #4; 
+    k<=5; 
+    l<=8;
 
-k<= 3; 
+  #4; 
+  $finish 
 
-l<=6; 
+  end 
 
-#4; 
-
-k<=4; 
-
-l<=7; 
-
-#4; 
-
-k<=5; 
-
-l<=8;
-
-#4; 
-
-$finish 
-
-end 
-
-endmodule
+  endmodule
