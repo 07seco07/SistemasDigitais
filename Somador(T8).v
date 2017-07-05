@@ -3,10 +3,14 @@ module somador(input clock,
 	       input [43:0] b,
 	       output[43:0] s
 		);
+	
 reg [43:0] saida;
+	
 assign s = saida;
+	
 always @(posedge clock) begin
 	saida <= a + b;
+	
 end
 endmodule
 
