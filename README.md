@@ -1,6 +1,6 @@
 Trabalhos apresentados em aula de SISTEMAS DIGITAIS
 
-Academico: Felipe da Silva
+Acadêmico: Felipe da Silva
 
 Semestre: 2 
 
